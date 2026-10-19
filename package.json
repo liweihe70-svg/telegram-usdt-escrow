@@ -1,0 +1,34 @@
+{
+  "name": "telegram-usdt-escrow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node scripts/write-build-info.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 dist/tests/*.test.js tests/*.test.mjs",
+    "dev": "npm run build && node dist/src/server.js",
+    "smoke": "npm run build && node dist/scripts/smoke.js",
+    "bot": "npm run build && node --env-file=.env dist/src/bot-main.js",
+    "production:dev": "npm run build && node dist/src/production/server.js",
+    "production:preflight": "npm run build && node --env-file=.env.production dist/scripts/production-preflight.js",
+    "production:rpc-check": "npm run build && node --env-file-if-exists=.env.production dist/scripts/production-rpc-check.js"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "ethers": "^6.17.0",
+    "pg": "^8.23.1",
+    "qrcode": "^1.5.4",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/qrcode": "^1.5.6",
+    "solc": "0.8.30",
+    "typescript": "^5.9.0"
+  },
+  "overrides": {
+    "tmp": "0.2.7"
+  }
+}

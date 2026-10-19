@@ -1,0 +1,3 @@
+Telegram escrow acceptance fixture.
+This file contains only synthetic test content.
+测试证据：用于完整模拟版附件上传验收。

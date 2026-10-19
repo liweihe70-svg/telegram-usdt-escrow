@@ -1,0 +1,15 @@
+{
+  "verified": true,
+  "chainId": 97,
+  "address": "0x71650b4EFE3bd1fde924f217B3Ca0dFBf1C62178",
+  "name": "Escrow Test Token",
+  "symbol": "TESTUSD",
+  "decimals": 18,
+  "totalSupplyUnits": "1000000000000000000000000",
+  "account": "0x8A3BCD47F0AD302b3915F3344ED8f9AD8a1f4283",
+  "accountBalanceUnits": "1000000000000000000000000",
+  "codeMatches": true,
+  "finalizedBlock": 136710246,
+  "finalizedBlockHash": "0x4acec1a3c94fc63cd58c6455f3d6a3ae5c7175d60020e7ba8c8e19377501b41b",
+  "readOnly": true
+}

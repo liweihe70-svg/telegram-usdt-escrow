@@ -1,0 +1,70 @@
+// English wording for errors that can reach a group. Unknown messages fall back to a generic line,
+// so internal details never leak into a group chat in either language.
+const EXACT:Record<string,string>={
+  '不是订单参与者':'Only the buyer or seller of this deal can do that.',
+  '不能确认对方角色':'You can only confirm your own role.',
+  '交易条款已变化，请查看最新卡片后再确认':'The terms changed. Check the latest card and confirm again.',
+  '交易草稿已变化，请刷新':'The deal changed. Tap refresh.',
+  '仅退款申请的另一方可以回应':'Only the other party can answer the refund request.',
+  '只有买家可以放款':'Only the buyer can pay the seller.',
+  '只有买家可以放款给卖家':'Only the buyer can pay the seller.',
+  '只有交易双方可以操作本群绑定':'Only the buyer or seller can do that.',
+  '只有交易双方可以绑定担保群':'Only the buyer or seller can bind this group.',
+  '只有卖家可以声明交付':'Only the seller can mark the deal as delivered.',
+  '只有卖家可以直接退款给买家':'Only the seller can refund the buyer.',
+  '只有本单买家、卖家或群管理员可以切换群语言':'Only the buyer, the seller or a group admin can change the group language.',
+  '只有本单买家或卖家可以操作':'Only the buyer or seller of this deal can do that.',
+  '只有本单买家或卖家可以设置交易内容':'Only the buyer or seller can set the description.',
+  '只有本单买家或卖家可以设置条款':'Only the buyer or seller can set the terms.',
+  '只有本单买家或卖家可以重置':'Only the buyer or seller can reset the roles.',
+  '只能为自己发送的地址选择角色':'You can only choose a role for an address you sent yourself.',
+  '同一个人不能同时是买家和卖家':'The same person cannot be both buyer and seller.',
+  '后台尚未初始化':'The escrow service is not ready yet. Contact support.',
+  '后台尚未配置本网络的代币合约':'The escrow service is not ready yet. Contact support.',
+  '已有签名交易，须先核对原交易，不能另行退款或裁决':'A payout is already being processed for this deal.',
+  '当前仅限白名单用户交易，双方都必须在白名单中':'Trading is currently limited to approved users; both parties must be approved.',
+  '当前仅限白名单用户在群内建单，请联系管理员':'Trading is currently limited to approved users. Contact support.',
+  '当前状态不能开启争议':'A dispute cannot be opened at this stage.',
+  '当前状态不能申请双方协商退款':'A refund cannot be requested at this stage.',
+  '当前状态不能退款':'A refund is not possible at this stage.',
+  '托管余额异常，不能创建退款或裁决出款':'The escrow balance needs review. Contact support.',
+  '按钮不属于本群绑定订单':'This button does not belong to the current deal.',
+  '无法核验你的群成员身份':'Could not verify that you are a member of this group.',
+  '本群已有进行中的订单，完成后才能开始新交易':'This group already has an active deal. Finish it before starting a new one.',
+  '本群没有有效绑定，旧按钮不能使用':'🚫 No active deal in this chat yet!',
+  '此操作需要交易方兼群管理员':'Only a party who is also a group admin can do that.',
+  '请先把机器人设为本群管理员':'Please make the bot an admin of this group first.',
+  '请先用 /buyer 地址 和 /seller 地址 设置双方角色':'💛 Set seller and buyer address first! Use /seller [USDT (BEP20) address] and /buyer [USDT (BEP20) address]',
+  '请先用 /seller 地址 和 /buyer 地址 设置双方角色':'💛 Set seller and buyer address first! Use /seller [USDT (BEP20) address] and /buyer [USDT (BEP20) address]',
+  '请写明交易内容（1至2000字）':'Please describe the deal (1–2000 characters).',
+  '请填写1至2000字符的说明':'Please give a reason (1–2000 characters).',
+  '角色和条款尚未设置完整':'Set both roles and the terms first.',
+  '角色无权声明交付或付款':'Only the seller can mark the deal as delivered.',
+  '角色无权申请放款':'Only the buyer can pay the seller.',
+  '订单不存在':'🚫 No deal yet! Hit /start and read to know more about this bot.',
+  '订单已变化，请点刷新后再操作':'The deal changed. Tap refresh and try again.',
+  '订单版本已变化，请刷新':'The deal changed. Tap refresh and try again.',
+  '订单状态已变化，请刷新':'The deal changed. Tap refresh and try again.',
+  '该角色已被另一位成员设置，可用 /reset 重置':'That role is already taken. Use /reset to start over.',
+  '金额格式：最多6位小数的正数，例如 /terms 10 交易内容':'Amount must be a positive number with up to 6 decimals, e.g. /terms 10 description',
+  '退款申请状态已变化':'The refund request changed. Tap refresh.',
+  'Invalid EVM address':'That is not a valid BEP20 (0x…) address.',
+  'Zero address is not allowed':'That address cannot be used.',
+};
+const PATTERNS:[RegExp,(m:RegExpMatchArray)=>string][]=[
+  [/^单笔本金超过上限 (.+) USDT$/,m=>`The amount is above the per-deal limit of ${m[1]} USDT.`],
+  [/^每人同时最多 (\d+) 笔进行中的订单/,m=>`You can have at most ${m[1]} active deals at a time. Finish one first.`],
+  [/^进行中订单托管总额将超过上限 (.+) USDT$/,m=>`The escrow is at capacity (${m[1]} USDT). Please try later.`],
+];
+const ZH:Record<string,string>={
+  '请先用 /buyer 地址 和 /seller 地址 设置双方角色':'💛 请先设置卖家和买家地址！使用 /seller [USDT (BEP20) 地址] 和 /buyer [USDT (BEP20) 地址]',
+  '请先用 /seller 地址 和 /buyer 地址 设置双方角色':'💛 请先设置卖家和买家地址！使用 /seller [USDT (BEP20) 地址] 和 /buyer [USDT (BEP20) 地址]',
+  '订单不存在':'🚫 还没有交易！发送 /start 了解本机器人。',
+  '本群没有有效绑定，旧按钮不能使用':'🚫 本群还没有进行中的交易！',
+};
+export function groupError(message:string,en:boolean){
+  if(!en){const zh=ZH[message]??message;return zh.startsWith('🚫')||zh.startsWith('💛')?zh:`🚫 ${zh}`;}
+  const exact=EXACT[message];if(exact)return exact.startsWith('🚫')||exact.startsWith('💛')?exact:`🚫 ${exact}`;
+  for(const [pattern,render] of PATTERNS){const m=message.match(pattern);if(m)return `🚫 ${render(m)}`;}
+  return '🚫 Action not completed. Check your role and the current deal, then try again.';
+}

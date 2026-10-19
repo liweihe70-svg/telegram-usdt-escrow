@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Escrow · 担保交易控制台</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brandmark">e.</span><span>escrow<span class="brand-sub">担保交易控制台</span></span></a>
+    <div class="nav-caption">工作空间</div>
+    <nav aria-label="主导航">
+      <button data-page="overview" class="nav-item active"><span>◈</span>交易概览</button>
+      <button data-page="orders" class="nav-item"><span>▤</span>全部订单</button>
+      <button data-page="disputes" class="nav-item"><span>⚑</span>争议处理<span id="dispute-count" class="nav-count">0</span></button>
+      <button data-page="payouts" class="nav-item"><span>↗</span>出款记录</button>
+      <button data-page="ledger" class="nav-item"><span>≋</span>资金账本</button>
+    </nav>
+    <div class="nav-caption bottom-caption">管理</div>
+    <nav><button data-page="settings" class="nav-item"><span>⚙</span>机器人配置</button><button data-page="maintenance" class="nav-item"><span>↻</span>维护与备份</button></nav>
+    <div class="sidebar-note"><span class="green-dot"></span>本地工作空间<p>模拟资金 · TRC20 流程</p><small>数据保存在你的电脑中</small></div>
+    <div class="sidebar-footer"><span class="avatar">L</span><div>本地管理员<small>Local administrator</small></div><span>⌄</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><span class="breadcrumb">工作空间 <span>/</span> <b id="breadcrumb">交易概览</b></span><div class="topbar-right"><select id="panel-language" aria-label="Panel language"><option value="zh">中文</option><option value="en">English</option></select><span id="connection" class="connection"><i></i>正在连接本地服务</span><span class="environment">模拟内测</span></div></header>
+    <div class="content">
+      <div class="page-head"><div><span class="eyebrow">ESCROW WORKSPACE</span><h1 id="page-title">交易概览</h1><p id="page-desc">跟进每笔交易，让资金流向清晰可查。</p></div><div class="head-actions"><button id="demo-button" class="button secondary">＋ 快速演练</button><button id="new-button" class="button primary">＋ 创建交易</button></div></div>
+      <section id="page-content" aria-live="polite"><div class="loading">正在载入本地订单…</div></section>
+      <footer class="main-footer"><span><span class="green-dot"></span>仅模拟资金，不接收真实转账</span><span id="updated">—</span></footer>
+    </div>
+  </main>
+  <dialog id="create-dialog" class="modal">
+    <div class="dialog-heading"><div><span class="eyebrow">NEW TRANSACTION</span><h2>创建担保交易</h2></div><button class="icon-button" data-close="create-dialog" aria-label="关闭">×</button></div>
+    <p class="muted">创建后，买卖双方分别确认条款，再进入模拟入金。</p>
+    <form id="create-form">
+      <label>交易类型<select name="kind"><option value="PRODUCT">商品／服务交易担保</option><option value="P2P">USDT 买卖担保</option></select></label>
+      <div class="form-grid"><label>买家 Telegram ID<input name="buyerId" value="1001" inputmode="numeric" required pattern="[1-9][0-9]*"></label><label>卖家 Telegram ID<input name="sellerId" value="1002" inputmode="numeric" required pattern="[1-9][0-9]*"></label></div>
+      <label>交易本金（模拟 USDT）<input name="principal" value="100" inputmode="decimal" required pattern="[0-9]+(\.[0-9]{1,6})?"></label>
+      <label>交易约定<textarea name="description" rows="3" maxlength="1000" placeholder="商品或服务内容、交付期限、验收条件…" required></textarea></label>
+      <div class="quote"><span>担保手续费</span><b id="quote-fee">—</b><span>入金方应付总额</span><strong id="quote-total">—</strong></div>
+      <p class="field-note">费用由入金方额外承担，创建后固定。所有钱包地址均为模拟标识。</p>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close="create-dialog">取消</button><button type="submit" class="button primary">创建订单</button></div>
+    </form>
+  </dialog>
+  <dialog id="detail-dialog" class="drawer"><div id="detail-content"></div></dialog>
+  <dialog id="confirm-dialog" class="modal small"><div class="dialog-heading"><h2 id="confirm-title">确认操作</h2><button class="icon-button" data-close="confirm-dialog" aria-label="关闭">×</button></div><p id="confirm-text"></p><div class="dialog-actions"><button class="button secondary" data-close="confirm-dialog">取消</button><button id="confirm-submit" class="button primary">确认</button></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body></html>
